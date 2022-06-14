@@ -18,5 +18,4 @@ Route::get('/', function () {
 Route::get('quizy', function () {
     return view('quiz.quiz_list');
 });
-// Route::get('quiz/{big_question_index?}', [QuizController::class, 'quiz_list']);
 Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list');

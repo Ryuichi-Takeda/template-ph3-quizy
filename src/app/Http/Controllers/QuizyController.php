@@ -8,7 +8,6 @@ class QuizyController extends Controller
     public function quiz_list($prefecture_id)
     {
         $choices=[
-            // 
             [['たかなわ','たかわ','こうわ'],
             ['かめいど','かめと','かめど']],
             [['みよし','みかた','みつぎ']]
@@ -18,7 +17,6 @@ class QuizyController extends Controller
             '東京',
             '広島'
         ];
-        // dd($big_question_index);
         return view ('quizy',['prefecture_id'=>$prefecture_id,'choices'=>$choices,'prefecture_name'=>$prefecture_name]);
     }
 }
