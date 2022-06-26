@@ -20,6 +20,10 @@ class CreateChoicesTable extends Migration
             $table->string('region');
             $table->boolean('valid');
         });
+        Schema::create('prefectures', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('prefecture');
+        });
     }
 
     /**
@@ -30,5 +34,6 @@ class CreateChoicesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('choices');
+        Schema::dropIfExists('prefectures');
     }
 }

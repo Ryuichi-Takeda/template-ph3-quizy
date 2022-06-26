@@ -12,7 +12,7 @@ class ChoicesTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
+        $choicesParam = [
             ['prefectureId' => 1,'questionId'=> 1,'region' => 'たかなわ','valid' => 1],
             ['prefectureId' => 1,'questionId'=> 1,'region' => 'こうわ','valid' => 0],
             ['prefectureId' => 1,'questionId'=> 1,'region' => 'たかわ','valid' => 0],
@@ -32,6 +32,11 @@ class ChoicesTableSeeder extends Seeder
             ['prefectureId' => 2,'questionId'=> 3,'region' => 'ぎんざん','valid' => 0],
             ['prefectureId' => 2,'questionId'=> 3,'region' => 'きやま','valid' => 0],
         ];
-        DB::table('choices')->insert($param);
+        $prefecturesParam = [
+            ['prefecture' => '東京'],
+            ['prefecture' => '広島'],
+        ];
+        DB::table('choices')->insert($choicesParam);
+        DB::table('prefectures')->insert($prefecturesParam);
     }
 }
