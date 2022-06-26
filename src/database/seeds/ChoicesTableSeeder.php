@@ -32,11 +32,6 @@ class ChoicesTableSeeder extends Seeder
             ['prefectureId' => 2,'questionId'=> 3,'region' => 'ぎんざん','valid' => 0],
             ['prefectureId' => 2,'questionId'=> 3,'region' => 'きやま','valid' => 0],
         ];
-        $prefecturesParam = [
-            ['prefecture' => '東京'],
-            ['prefecture' => '広島'],
-        ];
-        DB::table('choices')->insert($choicesParam);
-        DB::table('prefectures')->insert($prefecturesParam);
+        DB::table('choices')->insert($choicesParam);    
     }
 }
