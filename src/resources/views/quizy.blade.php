@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>quizy1</title>
-    <link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/quizy.css') }}">
 </head>
 <body>
     {{-- <div>{{dd($choices_array)}}</div> --}}
