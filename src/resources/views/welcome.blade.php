@@ -64,6 +64,8 @@
         </style>
     </head>
     <body>
+        <a href="{{ asset('quizy/1') }}">東京</a>
+        <a href="{{ asset('quizy/2') }}">広島</a>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">

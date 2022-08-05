@@ -1,23 +1,22 @@
 <?php 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
+
 use Illuminate\Http\Request;
 
 class QuizyController extends Controller
 {
     public function quiz_list($prefecture_id)
     {
-        $choices=[
-            [['たかなわ','たかわ','こうわ'],
-            ['かめいど','かめと','かめど']],
-            [['みよし','みかた','みつぎ']]
-        ];
+        $choices_array=
+            DB::table('choices')->where('prefectureId',$prefecture_id)->where('questionId',1)->get();
 
-        $prefecture_name=[
-            '東京',
-            '広島'
-        ];
-        return view ('quizy',['prefecture_id'=>$prefecture_id,'choices'=>$choices,'prefecture_name'=>$prefecture_name]);
+        $prefecture_name=
+            DB::table('prefectures')->where('id',$prefecture_id)->get();
+
+        return view ('quizy',['prefecture_id'=>$prefecture_id,'choices_array'=>$choices_array,'prefecture_name'=>$prefecture_name]);
     }
 }
 ?>
