@@ -18,4 +18,5 @@ Route::get('/', function () {
 Route::get('quizy', function () {
     return view('quiz.quiz_list');
 });
+Auth::routes();
 Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list');
