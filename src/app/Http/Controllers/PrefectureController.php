@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PrefectureController extends Controller
 {
-    public function index(Request $request)
+    public function index($prefecture_id)
     {
         // $choices = DB::table('choices')->get;
         $prefectures = Prefecture::all();

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class QuestionsTableSeeder extends Seeder
 {
@@ -12,12 +13,12 @@ class QuestionsTableSeeder extends Seeder
     public function run()
     {
         $questionsParam = [
-            ['prefectureId' => 1,'questionId'=>1,'img'=>'takanawa.png'],
-            ['prefectureId' => 1,'questionId'=>2,'img'=>'kameido.png'],
-            ['prefectureId' => 1,'questionId'=>3,'img'=>'kouzimati.png'],
-            ['prefectureId' => 2,'questionId'=>1,'img'=>'mukainada.png'],
-            ['prefectureId' => 2,'questionId'=>2,'img'=>'mitugi.png'],
-            ['prefectureId' => 2,'questionId'=>3,'img'=>'kanayama.png'],
+            ['prefecture_id' => 1,'question_id'=>1,'img'=>'takanawa.png'],
+            ['prefecture_id' => 1,'question_id'=>2,'img'=>'kameido.png'],
+            ['prefecture_id' => 1,'question_id'=>3,'img'=>'kouzimati.png'],
+            ['prefecture_id' => 2,'question_id'=>1,'img'=>'mukainada.png'],
+            ['prefecture_id' => 2,'question_id'=>2,'img'=>'mitugi.png'],
+            ['prefecture_id' => 2,'question_id'=>3,'img'=>'kanayama.png'],
         ];
         DB::table('questions')->insert($questionsParam);
     }

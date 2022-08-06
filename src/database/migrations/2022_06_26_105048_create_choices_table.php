@@ -15,8 +15,8 @@ class CreateChoicesTable extends Migration
     {
         Schema::create('choices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('prefectureId');
-            $table->integer('questionId');
+            $table->integer('prefecture_id');
+            $table->integer('question_id');
             $table->string('region');
             $table->boolean('valid');
         });
