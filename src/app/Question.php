@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-    // protected $guarded = array('id');
+    public function choices()
+    {
+        return $this->hasMany(Choice::class);
+    }
+
+    protected $guarded = array('id');
 
     public static $rules = array(
         'prefecture_id' => 'required',

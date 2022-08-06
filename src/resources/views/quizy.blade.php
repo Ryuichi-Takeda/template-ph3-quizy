@@ -13,14 +13,14 @@
 
 
         <tr><th>a</th><th>b</th></tr>
-        @foreach($prefectures as $question)
+        @foreach($questions as $question)
         <tr>
-            <td>{{$question->getData}}</td>
+            <td>{{$question->getData()}}</td>
             {{-- {{dd($question)}} --}}
-            {{-- <td>@foreach($question->question as $obj)
-            <tr><td>{{$obj->getData()}}</td></tr>
+            <td>@foreach($question->choices as $choice)
+            <tr><td>{{$choice->getData()}}</td></tr>
             @endforeach
-        </td> --}}
+        </td>
         </tr>
         @endforeach
     </table>

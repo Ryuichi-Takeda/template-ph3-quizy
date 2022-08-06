@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prefecture extends Model
 {
-    // public function getData()
-    // {
-    //     return $this->hasMany(Question::class);
-    // }
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

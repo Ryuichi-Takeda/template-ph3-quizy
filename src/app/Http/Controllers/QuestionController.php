@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-// use Illuminate\Support\Facades\DB;
+
 use App\Question;
-// use App\Choice;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
     public function index($prefecture_id)
     {
-        $questions = Question::all();
+        $questions = Question::with('choices')->where('prefecture_id',$prefecture_id)->get();
+        // dd($questions);
         return view('quizy',[
         'questions'=>$questions
     ]);
