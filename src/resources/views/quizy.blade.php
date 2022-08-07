@@ -6,11 +6,8 @@
     <link rel="stylesheet" href="{{ asset('css/quizy.css') }}">
 </head>
 <body>
-    <a href="{{ asset('quizy/1') }}">東京</a>
-    {{-- <div>{{dd($choices_array)}}</div> --}}
-
     <table>
-        <h1>{{$prefecture_name[0]->prefecture}}の難読地名クイズ</h1>
+        <h1>{{$prefecture[0]->prefecture}}の難読地名クイズ</h1>
         @foreach($questions as $question)
         <h2>{{$loop->index+1}}.この地名は何て読む？</h2>
         <img src="{{ asset('img/' . $question->img) }}" alt="">
