@@ -10,20 +10,29 @@
     {{-- <div>{{dd($choices_array)}}</div> --}}
 
     <table>
+        <h1>{{$prefecture_name[0]->prefecture}}の難読地名クイズ</h1>
+        @foreach($questions as $question)
+        <h2>{{$loop->index+1}}.この地名は何て読む？</h2>
+        <img src="{{ asset('img/' . $question->img) }}" alt="">
+        @foreach($question->choices as $choice)
+        <div>{{$choice->getData()}}</div>
+        @endforeach
+        @endforeach
 
 
-        <tr><th>a</th><th>b</th></tr>
+
+        {{-- <tr><th>a</th><th>b</th></tr>
         @foreach($questions as $question)
         <tr>
+            <img src="{{ asset('img/' . $question->img) }}" alt="">
             <td>{{$question->getData()}}</td>
-            {{-- {{dd($question)}} --}}
             <td>@foreach($question->choices as $choice)
             <tr><td>{{$choice->getData()}}</td></tr>
             @endforeach
         </td>
         </tr>
         @endforeach
-    </table>
+    </table> --}}
 
     {{-- <h1>{{$prefecture_name[0]->prefecture}}の難読地名クイズ</h1>
     @foreach ($choices_array as $choices)

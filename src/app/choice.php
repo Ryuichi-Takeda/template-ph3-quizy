@@ -15,6 +15,6 @@ class Choice extends Model
     );
 
     public function getData(){
-        return $this->id . ':' . $this->region;
+        return $this->region;
     }
 }
