@@ -19,5 +19,7 @@
             </div>
         </div>
     </div>
+    <a href="{{ asset('quizy/1') }}">東京</a>
+    <a href="{{ asset('quizy/2') }}">広島</a>
 </div>
 @endsection
