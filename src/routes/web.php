@@ -15,11 +15,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('quizy', function () {
-    return view('quiz.quiz_list');
-});
 Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list');
-// Route::get('quizy/{prefecture_id}', 'QuestionController@index');
-// Route::get('quizy/{prefecture_id}', 'ChoiceController@index');
-// Route::get('quizy/{prefecture_id}', 'PrefectureController@index');
-// Route::get('quizy/{prefecture_id}', 'PrefectureController@index');
+

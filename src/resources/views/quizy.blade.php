@@ -2,19 +2,24 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>quizy1</title>
+    <title>quizy</title>
     <link rel="stylesheet" href="{{ asset('css/quizy.css') }}">
 </head>
 <body>
-    <table>
+    <div class="main">
+        <div class="quiz">
         <h1>{{$prefecture[0]->prefecture}}の難読地名クイズ</h1>
         @foreach($questions as $question)
         <h2>{{$loop->index+1}}.この地名は何て読む？</h2>
         <img src="{{ asset('img/' . $question->img) }}" alt="">
         @foreach($question->choices as $choice)
-        <div>{{$choice->getData()}}</div>
+        <li class="answerlist">{{$choice->getData()}}</li>
         @endforeach
         @endforeach
+    </div>
+    </div>
+
+
 
 
 
