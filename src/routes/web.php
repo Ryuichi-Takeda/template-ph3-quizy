@@ -16,4 +16,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list');
+Route::get('admin', 'AdminController@show');
 
