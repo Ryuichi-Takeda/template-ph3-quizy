@@ -17,4 +17,8 @@ Route::get('/', function () {
 });
 Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list');
 Route::get('admin', 'AdminController@show');
+Route::get('admin/add', 'AdminController@add');
+Route::post('admin/add', 'AdminController@create');
+// Route::get('admin/add', 'AdminController@addDone');
+// Route::get('admin/add', 'AdminController@create');
 

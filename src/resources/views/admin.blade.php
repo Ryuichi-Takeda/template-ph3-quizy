@@ -9,41 +9,12 @@
 </head>
 
 <body>
-    <table>
-        <tr>
-            <th>都道府県</th>
-            <th>問題</th>
-            <th>問題</th>
-            {{-- <th>選択肢</th> --}}
-        </tr>
-
-        {{-- {{dd($questions)}} --}}
-
-
-        {{-- @foreach ($questions as $question) --}}
-            <tr>
-                <td>todouhuken</td>
-                <td>
-                    <table>
-                        @foreach ($questions as $question)
-                            <tr>
-                                <td>{{$question->img}}</td>
-                                <td>
-                                    <table>
-                                        @foreach ($question->choices as $choice)
-                                            <tr>
-                                                <td>{{ $choice->region }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </table>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-                </td>
-            </tr>
-        {{-- @endforeach --}}
-    </table>
+<div style="display: flex">
+    <div>東京の難読地名クイズ</div>
+    <a href="{{asset('admin/add')}}">追加</a>
+    {{-- <a href="{{}}">変更</a>
+    <a href="{{}}">削除</a> --}}
+</div>
 </body>
 
 </html>
