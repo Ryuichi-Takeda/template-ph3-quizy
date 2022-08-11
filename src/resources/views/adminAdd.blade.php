@@ -15,21 +15,17 @@
             @csrf
             <tr>
                 <th>タイトル</th>
-                <td><input type="text" name="prefecture" value="{{old('prefecture')}}"></td>
+                <td><input type="text" name="prefecture" value="{{ old('prefecture') }}"></td>
             </tr>
             <tr>
                 <th>
-                    <input type="submit" value="send">
+                    <input type="submit" value="削除">
                 </th>
             </tr>
         </table>
     </form>
-    {{-- @foreach($prefectures as $prefecture) --}}
-    {{-- <div>{{$prefecture->prefecture}}</div> --}}
-    {{-- @endforeach --}}
-    {{-- <div>{{$prefecture->getData()}}</div> --}}
-    @if($msg ?? '' != '')
-    <p>{{$msg ?? ''}}</p>
+    @if ($msg ?? '' != '')
+        <p>{{ $msg ?? '' }}</p>
     @endif
 </body>
 

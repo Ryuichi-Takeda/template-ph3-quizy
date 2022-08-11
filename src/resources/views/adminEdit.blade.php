@@ -9,10 +9,7 @@
 </head>
 
 <body>
-    {{-- {{dd($prefecture)}} --}}
     <div>問題変更</div>
-
-    <div>{{$prefecture->prefecture}}</div>;
     <form action="" method="post">
         <table>
             @csrf
@@ -27,12 +24,8 @@
             </tr>
         </table>
     </form>
-    {{-- @foreach($prefectures as $prefecture) --}}
-    {{-- <div>{{$prefecture->prefecture}}</div> --}}
-    {{-- @endforeach --}}
-    {{-- <div>{{$prefecture->getData()}}</div> --}}
-    @if($msg ?? '' != '')
-    <p>{{$msg ?? ''}}</p>
+    @if ($msg ?? '' != '')
+        <p>{{ $msg ?? '' }}</p>
     @endif
 </body>
 

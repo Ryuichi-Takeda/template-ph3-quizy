@@ -14,7 +14,8 @@ class Choice extends Model
         'region' => 'required'
     );
 
-    public function getData(){
+    public function getData()
+    {
         return $this->region;
     }
 }

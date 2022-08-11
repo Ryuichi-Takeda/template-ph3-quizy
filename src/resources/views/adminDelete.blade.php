@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    {{-- {{dd($prefecture)}} --}}
     <div>問題削除</div>
     <form action="" method="post">
         <table>
@@ -21,4 +20,5 @@
         </table>
     </form>
 </body>
+
 </html>

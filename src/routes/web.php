@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +24,3 @@ Route::get('admin/edit/{id}', 'AdminController@edit')->name('admin.edit');
 Route::post('admin/edit/{id}', 'AdminController@update');
 Route::get('admin/delete/{id}', 'AdminController@delete')->name('admin.delete');
 Route::post('admin/delete/{id}', 'AdminController@remove');
-// Route::get('admin/add', 'AdminController@addDone');
-// Route::get('admin/add', 'AdminController@create');
-
