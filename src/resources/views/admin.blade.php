@@ -9,9 +9,23 @@
 </head>
 
 <body>
-<div style="display: flex">
-    <div>東京の難読地名クイズ</div>
     <a href="{{asset('admin/add')}}">追加</a>
+    <table>
+
+        @foreach($prefectures as $prefecture)
+        <tr>
+                {{-- <div style="display: flex"> --}}
+                    {{-- @dd($prefecture); --}}
+                    <td>{{$prefecture->prefecture}}</td>
+                
+                {{-- @foreach($prefectures as $prefecture) --}}
+                {{-- <div>東京の難読地名クイズ</div> --}}
+                <td><a href="{{asset('admin/edit/' . $prefecture->id)}}">変更</a></td>
+                <td><a href="{{asset('admin/delete/' . $prefecture->id)}}">削除</a></td>
+            </tr>
+                @endforeach
+        </table>
+    {{-- @endforeach --}}
     {{-- <a href="{{}}">変更</a>
     <a href="{{}}">削除</a> --}}
 </div>

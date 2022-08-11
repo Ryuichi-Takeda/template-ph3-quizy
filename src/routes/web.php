@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list');
-Route::get('admin', 'AdminController@show');
-Route::get('admin/add', 'AdminController@add');
+Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list')->name('quizy');
+Route::get('admin', 'AdminController@show')->name('admin');
+Route::get('admin/add', 'AdminController@add')->name('admin.add');
 Route::post('admin/add', 'AdminController@create');
+Route::get('admin/edit/{id}', 'AdminController@edit')->name('admin.edit');
+Route::post('admin/edit/{id}', 'AdminController@update');
+Route::get('admin/delete/{id}', 'AdminController@delete')->name('admin.delete');
+Route::post('admin/delete/{id}', 'AdminController@remove');
 // Route::get('admin/add', 'AdminController@addDone');
 // Route::get('admin/add', 'AdminController@create');
 
