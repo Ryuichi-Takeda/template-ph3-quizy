@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
-    <title>quizy1</title>
+    <title>quizy</title>
     <link rel="stylesheet" href="{{ asset('css/quizy.css') }}">
 </head>
+
 <body>
-    <a href="{{ asset('quizy/1') }}">東京</a>
-    {{-- <div>{{dd($choices_array)}}</div> --}}
-    <h1>{{$prefecture_name[0]->prefecture}}の難読地名クイズ</h1>
-    @foreach ($choices_array as $choices)
-    <h2>{{$loop->index+1}}.この地名は何て読む？</h2>
-    @foreach ($choices_array as $choice)
-    <li id=`choice_{{$choice->questionId}}_{{$loop->index+1}}` data-valid={{$choice->valid}}>
-        {{$choice->region}}
-    </li>
-    @endforeach
-    @endforeach
+    <div class="main">
+        <div class="quiz">
+            <h1>{{ $prefecture[0]->prefecture }}の難読地名クイズ</h1>
+            @foreach ($questions as $question)
+                <h2>{{ $loop->index + 1 }}.この地名は何て読む？</h2>
+                <img src="{{ asset('img/' . $question->img) }}" alt="">
+                <ul>
+                    @foreach ($question->choices as $choice)
+                        <li id="{{ 'answerlist_' . $loop->parent->index . '_' . $loop->index }}" class="answerlist">
+                            {{ $choice->getData() }}</li>
+                    @endforeach
+                </ul>
+                <li class="answerbox">
+                    <span></span><br>
+                    <span>正解は「」です！
+                    </span>
+                </li>
+            @endforeach
+        </div>
+    </div>
 </body>
+
 </html>

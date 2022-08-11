@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,5 +19,4 @@ Route::get('/', function () {
 Route::get('quizy', function () {
     return view('quiz.quiz_list');
 });
-Auth::routes();
 Route::get('quizy/{prefecture_id}', 'QuizyController@quiz_list');
