@@ -19,7 +19,7 @@
             </tr>
             <tr>
                 <th>
-                    <input type="submit" value="削除">
+                    <input type="submit" value="追加">
                 </th>
             </tr>
         </table>

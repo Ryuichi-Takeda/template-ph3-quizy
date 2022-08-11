@@ -15,7 +15,7 @@
             @csrf
             <tr>
                 <th></th>
-                <td><input type="submit" value="send"></td>
+                <td><input type="submit" value="削除"></td>
             </tr>
         </table>
     </form>

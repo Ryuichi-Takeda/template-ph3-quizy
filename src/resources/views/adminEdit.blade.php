@@ -15,11 +15,11 @@
             @csrf
             <tr>
                 <th>タイトル</th>
-                <td><input type="text" name="prefecture"></td>
+                <td><input type="text" name="prefecture" value="{{ $prefecture[0]->prefecture }}"></td>
             </tr>
             <tr>
                 <th>
-                    <input type="submit" value="send">
+                    <input type="submit" value="変更">
                 </th>
             </tr>
         </table>

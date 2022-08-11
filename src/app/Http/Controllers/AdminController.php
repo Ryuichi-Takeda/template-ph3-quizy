@@ -28,8 +28,9 @@ class AdminController extends Controller
     public function edit(Request $request)
     {
         $id = $request->id;
-        $prefecture = Prefecture::find($request->id);
-        return view('adminEdit', ['form' => $prefecture]);
+        $form = Prefecture::find($request->id);
+        $prefecture = Prefecture::where('id',$request->id)->get();
+        return view('adminEdit', ['form'=>$form,'prefecture' => $prefecture]);
     }
     public function update(Request $request)
     {
