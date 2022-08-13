@@ -13,7 +13,7 @@
     <table>
         @foreach ($prefectures as $prefecture)
             <tr>
-                <td>{{ $prefecture->prefecture }}</td>
+                <td><a href="{{ asset('admin/choice/' . $prefecture->id) }}">{{ $prefecture->prefecture }}</a></td>
                 <td><a href="{{ asset('admin/edit/' . $prefecture->id) }}">変更</a></td>
                 <td><a href="{{ asset('admin/delete/' . $prefecture->id) }}">削除</a></td>
             </tr>

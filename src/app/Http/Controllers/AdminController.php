@@ -53,4 +53,8 @@ class AdminController extends Controller
         Prefecture::find($request->id)->delete();
         return redirect('./admin');
     }
+    public function showQUestion(Request $request)
+    {
+        return view('adminQuestion');
+    }
 }
