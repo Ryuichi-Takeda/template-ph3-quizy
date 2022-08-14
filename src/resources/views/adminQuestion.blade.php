@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div>設問メンテナンス画面</div>
+    {{dd($prefecture)}}
+    <div>{{$prefecture->prefecture}}</div>
 </body>
 </html>

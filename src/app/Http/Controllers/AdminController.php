@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Prefecture;
+use App\Question;
+// use App\Choice;
 
 class AdminController extends Controller
 {
@@ -55,6 +57,10 @@ class AdminController extends Controller
     }
     public function showQUestion(Request $request)
     {
-        return view('adminQuestion');
+        $id = $request->id;
+        // $prefecture = Prefecture::find($request->id);
+        $prefecture = Prefecture::with('questions')->where('id',$id)->get();
+
+        return view('adminQuestion',['prefecture'=>$prefecture,'id'=>$id]);
     }
 }
