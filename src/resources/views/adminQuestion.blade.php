@@ -10,9 +10,11 @@
     <div>{{$prefecture[0]->prefecture}}</div>
     <table>
         
+        <a href="{{ asset('admin/question/add/{id}') }}">追加</a>
         @foreach($prefecture[0]->questions as $question)
         <tr>
             <td><img src="{{ asset('img/' . $question->img) }}" alt="" width="400px" height="300px"></td>
+            <td></td>
         </tr>
         @endforeach
     </table>

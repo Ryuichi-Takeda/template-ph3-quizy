@@ -23,4 +23,5 @@ Route::get('admin/edit/{id}', 'AdminController@edit')->name('admin.edit');
 Route::post('admin/edit/{id}', 'AdminController@update');
 Route::get('admin/delete/{id}', 'AdminController@delete')->name('admin.delete');
 Route::post('admin/delete/{id}', 'AdminController@remove');
-Route::get('admin/choice/{id}','AdminController@showQuestion')->name('admin.showQuestion');
+Route::get('admin/question/{id}','AdminController@showQuestion')->name('admin.showQuestion');
+Route::get('admin/question/add/{id}','AdminController@questionAdd')->name('admin.questionAdd');

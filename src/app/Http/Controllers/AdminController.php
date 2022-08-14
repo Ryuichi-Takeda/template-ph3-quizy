@@ -63,4 +63,18 @@ class AdminController extends Controller
 
         return view('adminQuestion',['prefecture'=>$prefecture,'id'=>$id]);
     }
+
+    public function questionAdd(Request $request)
+    {
+        return view('adminQuestionAdd');
+    }
+    // public function questionCreate(Request $request)
+    // {
+    //     $this->validate($request, Prefecture::$rules);
+    //     $prefecture = new Prefecture();
+    //     $form = $request->all();
+    //     unset($form['_token_']);
+    //     $prefecture->fill($form)->save();
+    //     return redirect('./admin');
+    // }
 }
