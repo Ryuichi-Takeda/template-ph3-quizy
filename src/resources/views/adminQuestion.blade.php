@@ -7,7 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    {{dd($prefecture)}}
-    <div>{{$prefecture->prefecture}}</div>
+    <div>{{$prefecture[0]->prefecture}}</div>
+    <table>
+        
+        @foreach($prefecture[0]->questions as $question)
+        <tr>
+            <td><img src="{{ asset('img/' . $question->img) }}" alt="" width="400px" height="300px"></td>
+        </tr>
+        @endforeach
+    </table>
 </body>
 </html>
