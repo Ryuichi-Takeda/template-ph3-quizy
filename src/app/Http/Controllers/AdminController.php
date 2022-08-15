@@ -77,4 +77,13 @@ class AdminController extends Controller
     //     $prefecture->fill($form)->save();
     //     return redirect('./admin');
     // }
+    public function questionEdit(Request $request)
+    {
+        return view('adminQuestionEdit');
+    }
+
+    public function questionDelete(Request $request)
+    {
+        return view('adminQuestionDelete');
+    }
 }

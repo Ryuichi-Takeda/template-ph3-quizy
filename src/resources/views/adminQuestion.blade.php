@@ -14,7 +14,8 @@
         @foreach($prefecture[0]->questions as $question)
         <tr>
             <td><img src="{{ asset('img/' . $question->img) }}" alt="" width="400px" height="300px"></td>
-            <td></td>
+            <td><a href="{{ asset('admin/question/edit/{id}')}}">変更</a></td>
+            <td><a href="{{ asset('admin/question/delete/{id}')}}">削除</a></td>
         </tr>
         @endforeach
     </table>
