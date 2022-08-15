@@ -87,4 +87,10 @@ class AdminController extends Controller
     {
         return view('adminQuestionDelete',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
     }
+
+    public function questionRemove($prefecture_id,$question_id)
+    {
+        Question::where('id',$question_id)->delete();
+        return redirect('./admin/question/' . $prefecture_id);
+    }
 }

@@ -8,5 +8,14 @@
 </head>
 <body>
     <div>設問削除</div>
+    <form action="" method="post">
+        <table>
+            @csrf
+            <tr>
+                <th></th>
+                <td><input type="submit" value="削除"></td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>
