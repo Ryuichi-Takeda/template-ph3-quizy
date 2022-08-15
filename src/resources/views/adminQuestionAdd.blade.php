@@ -8,7 +8,8 @@
 </head>
 <body>
     <div>設問追加</div>
-    {{-- <form action="./add" method="post">
+    {{-- {{dd($prefecture_id)}} --}}
+    <form action="./add" method="post">
         <table>
             @csrf
             <tr>
@@ -24,6 +25,6 @@
     </form>
     @if ($msg ?? '' != '')
         <p>{{ $msg ?? '' }}</p>
-    @endif --}}
+    @endif
 </body>
 </html>

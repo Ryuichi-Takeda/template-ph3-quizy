@@ -55,18 +55,19 @@ class AdminController extends Controller
         Prefecture::find($request->id)->delete();
         return redirect('./admin');
     }
-    public function showQUestion(Request $request)
+    public function showQuestion($prefecture_id)
     {
-        $id = $request->id;
+        // $id = $request->id;
+        // dd($prefecture_id);
         // $prefecture = Prefecture::find($request->id);
-        $prefecture = Prefecture::with('questions')->where('id',$id)->get();
+        $prefecture = Prefecture::with('questions')->where('id',$prefecture_id)->get();
 
-        return view('adminQuestion',['prefecture'=>$prefecture,'id'=>$id]);
+        return view('adminQuestion',['prefecture'=>$prefecture,'prefecture_id'=>$prefecture_id]);
     }
 
-    public function questionAdd(Request $request)
+    public function questionAdd($prefecture_id)
     {
-        return view('adminQuestionAdd');
+        return view('adminQuestionAdd',['prefecture_id'=>$prefecture_id]);
     }
     // public function questionCreate(Request $request)
     // {
@@ -77,13 +78,13 @@ class AdminController extends Controller
     //     $prefecture->fill($form)->save();
     //     return redirect('./admin');
     // }
-    public function questionEdit(Request $request)
+    public function questionEdit($prefecture_id,$question_id)
     {
-        return view('adminQuestionEdit');
+        return view('adminQuestionEdit',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
     }
 
-    public function questionDelete(Request $request)
+    public function questionDelete($prefecture_id,$question_id)
     {
-        return view('adminQuestionDelete');
+        return view('adminQuestionDelete',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
     }
 }

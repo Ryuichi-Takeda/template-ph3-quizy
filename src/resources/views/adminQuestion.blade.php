@@ -9,13 +9,13 @@
 <body>
     <div>{{$prefecture[0]->prefecture}}</div>
     <table>
-        
-        <a href="{{ asset('admin/question/add/{id}') }}">追加</a>
+        {{-- {{dd($prefecture)}} --}}
+        <a href="{{ asset('admin/question/add/' . $prefecture_id) }}">追加</a>
         @foreach($prefecture[0]->questions as $question)
         <tr>
             <td><img src="{{ asset('img/' . $question->img) }}" alt="" width="400px" height="300px"></td>
-            <td><a href="{{ asset('admin/question/edit/{id}')}}">変更</a></td>
-            <td><a href="{{ asset('admin/question/delete/{id}')}}">削除</a></td>
+            <td><a href="{{ asset('admin/question/edit/' . $prefecture_id . '/' . $question->id)}}">変更</a></td>
+            <td><a href="{{ asset('admin/question/delete/' . $prefecture_id . '/' . $question->id)}}">削除</a></td>
         </tr>
         @endforeach
     </table>

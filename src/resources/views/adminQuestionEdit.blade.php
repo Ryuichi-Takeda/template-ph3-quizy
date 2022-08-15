@@ -8,5 +8,6 @@
 </head>
 <body>
     <div>設問編集</div>
+    {{dd($question_id)}}
 </body>
 </html>
