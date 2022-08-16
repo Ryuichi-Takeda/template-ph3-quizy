@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <a href="{{ asset('admin/add') }}">追加</a>
+    <a href="{{ route('admin.add') }}">追加</a>
     <table>
         @foreach ($prefectures as $prefecture)
             <tr>
