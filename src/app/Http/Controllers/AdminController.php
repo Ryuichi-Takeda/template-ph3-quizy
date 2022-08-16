@@ -57,11 +57,7 @@ class AdminController extends Controller
     }
     public function showQuestion($prefecture_id)
     {
-        // $id = $request->id;
-        // dd($prefecture_id);
-        // $prefecture = Prefecture::find($request->id);
         $prefecture = Prefecture::with('questions')->where('id',$prefecture_id)->get();
-
         return view('adminQuestion',['prefecture'=>$prefecture,'prefecture_id'=>$prefecture_id]);
     }
 
@@ -92,5 +88,10 @@ class AdminController extends Controller
     {
         Question::where('id',$question_id)->delete();
         return redirect('./admin/question/' . $prefecture_id);
+    }
+
+    public function showChoice($prefecture_id,$question_id)
+    {
+        return view('adminChoice',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
     }
 }
