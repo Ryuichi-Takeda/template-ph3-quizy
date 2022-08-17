@@ -10,15 +10,24 @@
 
 <body>
     <div>選択肢</div>
-    <table>
-        <a href="{{ asset('admin/question/add/' . $prefecture_id) }}">追加</a>
-        @foreach ($prefecture[0]->questions as $question)
-            @foreach ($question->choices->where('question_id', $question_id) as $choice)
-                <tr>
-                    <td>{{ $choice->region }}</td>
-                </tr>
+    <form action="" method="post">
+        <table>
+            @csrf
+            <a href="{{ asset('admin/question/add/' . $prefecture_id) }}">追加</a>
+            @foreach ($prefecture[0]->questions as $question)
+                @foreach ($question->choices->where('question_id', $question_id) as $choice)
+                    <tr>
+                        <td><input type="text" name="" value="{{ $choice->region }}"></td>
+                    </tr>
+                @endforeach
             @endforeach
-        @endforeach
+            <tr>
+                <th>
+                    <input type="submit" value="変更">
+                </th>
+            </tr>
+        </table>
+    </form>
 </body>
 
 </html>
