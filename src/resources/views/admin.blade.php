@@ -7,11 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
+{{-- {{dd($prefectures)}} --}}
 <body>
     <a href="{{ route('admin.add') }}">追加</a>
     <table>
         @foreach ($prefectures as $prefecture)
+        {{-- {{dd($prefecture)}} --}}
             <tr>
                 <td><a href="{{ asset('admin/question/' . $prefecture->id) }}">{{ $prefecture->prefecture }}</a></td>
                 <td><a href="{{ asset('admin/edit/' . $prefecture->id) }}">変更</a></td>

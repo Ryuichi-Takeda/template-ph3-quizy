@@ -92,6 +92,7 @@ class AdminController extends Controller
 
     public function showChoice($prefecture_id,$question_id)
     {
-        return view('adminChoice',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
+        $prefecture = Prefecture::where('id',$prefecture_id)->get();
+        return view('adminChoice',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id,'prefecture'=>$prefecture]);
     }
 }
