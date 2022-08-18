@@ -57,13 +57,13 @@ class AdminController extends Controller
     }
     public function showQuestion($prefecture_id)
     {
-        $prefecture = Prefecture::with('questions')->where('id',$prefecture_id)->get();
-        return view('adminQuestion',['prefecture'=>$prefecture,'prefecture_id'=>$prefecture_id]);
+        $prefecture = Prefecture::with('questions')->where('id', $prefecture_id)->get();
+        return view('adminQuestion', ['prefecture' => $prefecture, 'prefecture_id' => $prefecture_id]);
     }
 
     public function questionAdd($prefecture_id)
     {
-        return view('adminQuestionAdd',['prefecture_id'=>$prefecture_id]);
+        return view('adminQuestionAdd', ['prefecture_id' => $prefecture_id]);
     }
     // public function questionCreate(Request $request)
     // {
@@ -74,25 +74,46 @@ class AdminController extends Controller
     //     $prefecture->fill($form)->save();
     //     return redirect('./admin');
     // }
-    public function questionEdit($prefecture_id,$question_id)
+    public function questionEdit($prefecture_id, $question_id)
     {
-        return view('adminQuestionEdit',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
+        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
 
-    public function questionDelete($prefecture_id,$question_id)
+    public function questionDelete($prefecture_id, $question_id)
     {
-        return view('adminQuestionDelete',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
+        return view('adminQuestionDelete', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
 
-    public function questionRemove($prefecture_id,$question_id)
+    public function questionRemove($prefecture_id, $question_id)
     {
-        Question::where('id',$question_id)->delete();
+        Question::where('id', $question_id)->delete();
         return redirect('./admin/question/' . $prefecture_id);
     }
 
-    public function showChoice($prefecture_id,$question_id)
+    public function showChoice($prefecture_id, $question_id)
     {
-        $prefecture = Prefecture::where('id',$prefecture_id)->get();
-        return view('adminChoice',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id,'prefecture'=>$prefecture]);
+        $prefecture = Prefecture::where('id', $prefecture_id)->get();
+        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id, 'prefecture' => $prefecture]);
+    }
+
+    public function choiceUpdate(Request $request, $prefecture_id, $question_id)
+    {
+
+        $choices = Question::find($question_id)->choices;
+        // dd($choices[0]->region);
+        foreach ($choices as $index => $choice) {
+            $choice->region = $request->{'choice' . $index};
+            $choice->save();
+        }
+
+        // $choices[0]->region = $request->{'choice1'};
+
+        // $prefecture = Prefecture::where('id',$prefecture_id)->get();
+        // $questions = $prefecture[0]->questions->where('id', $question_id);
+        // dd($questions);
+        // $choices = $questions[0]->choices;
+        // dd($choices);
+        return redirect('./admin/choice/' . $prefecture_id . '/' . $question_id);
+        // return redirect('./admin/question/' . $prefecture_id);
     }
 }

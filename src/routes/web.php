@@ -29,3 +29,4 @@ Route::get('admin/question/edit/{prefecture_id}/{question_id}','AdminController@
 Route::get('admin/question/delete/{prefecture_id}/{question_id}','AdminController@questionDelete')->name('admin.questionDelete');
 Route::post('admin/question/delete/{prefecture_id}/{question_id}','AdminController@questionRemove')->name('admin.questionRemove');
 Route::get('admin/choice/{prefecture_id}/{question_id}','AdminController@showChoice')->name('admin.showChoice');
+Route::post('admin/choice/{prefecture_id}/{question_id}','AdminController@choiceUpdate')->name('admin.choiceUpdate');

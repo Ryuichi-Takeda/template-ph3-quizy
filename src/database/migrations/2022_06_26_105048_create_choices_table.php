@@ -19,6 +19,7 @@ class CreateChoicesTable extends Migration
             $table->integer('question_id');
             $table->string('region');
             $table->boolean('valid');
+            $table->timestamps();
         });
     }
 

@@ -17,7 +17,7 @@
             @foreach ($prefecture[0]->questions as $question)
                 @foreach ($question->choices->where('question_id', $question_id) as $choice)
                     <tr>
-                        <td><input type="text" name="" value="{{ $choice->region }}"></td>
+                        <td><input type="text" name="choice{{$loop->index}}" value="{{ $choice->region }}"></td>
                     </tr>
                 @endforeach
             @endforeach
