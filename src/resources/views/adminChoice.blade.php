@@ -13,11 +13,20 @@
     <form action="" method="post">
         <table>
             @csrf
+            <a href=" {{ route('admin.showQuestion',['prefecture_id'=>$prefecture_id])}}">設問に戻る</a><br>
             <a href="{{ asset('admin/question/add/' . $prefecture_id) }}">追加</a>
             @foreach ($prefecture[0]->questions as $question)
                 @foreach ($question->choices->where('question_id', $question_id) as $choice)
                     <tr>
                         <td><input type="text" name="choice{{$loop->index}}" value="{{ $choice->region }}"></td>
+                        <td>
+                            <input
+                            type="radio"
+                            name="valid"
+                            value="{{ $loop->index }}"
+                            @if($choice->valid==1) checked @endif
+                            >
+                        </td>
                     </tr>
                 @endforeach
             @endforeach

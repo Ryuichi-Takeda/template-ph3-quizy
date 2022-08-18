@@ -103,17 +103,13 @@ class AdminController extends Controller
         // dd($choices[0]->region);
         foreach ($choices as $index => $choice) {
             $choice->region = $request->{'choice' . $index};
+            if ($index === intval($request->valid)) {
+                $choice->valid = 1;
+            } else {
+                $choice->valid = 0;
+            }
             $choice->save();
         }
-
-        // $choices[0]->region = $request->{'choice1'};
-
-        // $prefecture = Prefecture::where('id',$prefecture_id)->get();
-        // $questions = $prefecture[0]->questions->where('id', $question_id);
-        // dd($questions);
-        // $choices = $questions[0]->choices;
-        // dd($choices);
         return redirect('./admin/choice/' . $prefecture_id . '/' . $question_id);
-        // return redirect('./admin/question/' . $prefecture_id);
     }
 }
