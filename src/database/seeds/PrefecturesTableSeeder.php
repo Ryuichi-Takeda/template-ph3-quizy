@@ -14,8 +14,8 @@ class PrefecturesTableSeeder extends Seeder
     public function run()
     {
         $prefecturesParam = [
-            ['prefecture' => '東京'],
-            ['prefecture' => '広島'],
+            ['order_id'=>1,'prefecture' => '東京'],
+            ['order_id'=>2,'prefecture' => '広島'],
         ];
         DB::table('prefectures')->insert($prefecturesParam);
     }
