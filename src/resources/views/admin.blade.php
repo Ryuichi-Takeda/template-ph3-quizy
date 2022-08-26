@@ -13,7 +13,7 @@
     <table>
         @foreach ($prefectures as $prefecture)
             <tr>
-                <td><a href="{{ route('admin.choice',['id'=>$prefecture->id]) }}">{{ $prefecture->prefecture }}</a></td>
+                <td><a href="{{ route('admin.showQuestion',['id'=>$prefecture->id]) }}">{{ $prefecture->prefecture }}</a></td>
                 <td><a href="{{ route('admin.edit',['id'=>$prefecture->id]) }}">変更</a></td>
                 <td><a href="{{ route('admin.delete',['id'=>$prefecture->id]) }}">削除</a></td>
             </tr>
