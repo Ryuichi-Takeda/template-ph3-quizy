@@ -57,4 +57,14 @@ class AdminController extends Controller
     {
         return view('adminQuestion');
     }
+    public function sort(Request $request)
+    {
+        $orderIds = explode(',', $request->listIds);
+        foreach($orderIds as $key=>$orderId){
+            $prefecture=Prefecture::find($key+1);
+            $prefecture->order_id=$orderId;
+            $prefecture->save();
+        }
+        return redirect('admin');
+    }
 }

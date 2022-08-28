@@ -10,25 +10,23 @@
 
 <body>
     <a href="{{ route('admin.add') }}">追加</a>
-    <form action="" action="post">
-        <div class="sortable">
+    <form action="{{ route('admin.sort') }}" action="post">
+        <table class="sortable">
             @csrf
             @foreach ($prefectures as $prefecture)
-                <table>
-                    <tr>
-                        <td>
-                            <div>{{ $prefecture->order_id }}</div>
-                        </td>
-                        <td><a
-                                href="{{ route('admin.showQuestion', ['id' => $prefecture->id]) }}">{{ $prefecture->prefecture }}</a>
-                        </td>
-                        <td><a href="{{ route('admin.edit', ['id' => $prefecture->id]) }}">変更</a></td>
-                        <td><a href="{{ route('admin.delete', ['id' => $prefecture->id]) }}">削除</a></td>
-                    </tr>
-                </table>
+                <tr id="{{ $prefecture->order_id }}">
+                    <td>
+                        <div>{{ $prefecture->order_id }}</div>
+                    </td>
+                    <td><a
+                            href="{{ route('admin.showQuestion', ['id' => $prefecture->id]) }}">{{ $prefecture->prefecture }}</a>
+                    </td>
+                    <td><a href="{{ route('admin.edit', ['id' => $prefecture->id]) }}">変更</a></td>
+                    <td><a href="{{ route('admin.delete', ['id' => $prefecture->id]) }}">削除</a></td>
+                </tr>
             @endforeach
-        </div>
-        <input type="hidden" id="list-ids" name="list-ids" />
+        </table>
+        <input type="hidden" id="list-ids" name="listIds" />
         <button id="submit">更新</button>
     </form>
     </div>
@@ -36,10 +34,9 @@
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script>
         $(function() {
-            $(".sortable").sortable();
-            $(".sortable").disableSelection();
-            $("#submit").click(function() {
-                var listIds = $(".sortable").sortable("toArray");
+            $(".sortable tbody").sortable();
+            $("#submit").on('click', function() {
+                var listIds = $(".sortable tbody").sortable("toArray");
                 $("#list-ids").val(listIds);
                 $("form").submit();
             });
