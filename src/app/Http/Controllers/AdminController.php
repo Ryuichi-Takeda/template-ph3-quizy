@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function show()
     {
-        $prefectures = Prefecture::all();
+        $prefectures = Prefecture::orderBy('order_id','asc')->get();
         return view('admin', ['prefectures' => $prefectures]);
     }
     public function add(Request $request)
@@ -52,5 +52,19 @@ class AdminController extends Controller
         $id = $request->id;
         Prefecture::find($request->id)->delete();
         return redirect('./admin');
+    }
+    public function showQUestion(Request $request)
+    {
+        return view('adminQuestion');
+    }
+    public function sort(Request $request)
+    {
+        $orderIds = explode(',', $request->listIds);
+        foreach($orderIds as $key=>$orderId){
+            $prefecture=Prefecture::find($orderId);
+            $prefecture->order_id=$key+1;
+            $prefecture->save();
+        }
+        return redirect('admin');
     }
 }
