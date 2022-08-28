@@ -14,9 +14,12 @@
         <table class="sortable">
             @csrf
             @foreach ($prefectures as $prefecture)
-                <tr id="{{ $prefecture->order_id }}">
+                <tr id="{{ $prefecture->id }}">
                     <td>
                         <div>{{ $prefecture->id }}</div>
+                    </td>
+                    <td>
+                        <div>{{ $prefecture->order_id }}</div>
                     </td>
                     <td><a
                             href="{{ route('admin.showQuestion', ['id' => $prefecture->id]) }}">{{ $prefecture->prefecture }}</a>
