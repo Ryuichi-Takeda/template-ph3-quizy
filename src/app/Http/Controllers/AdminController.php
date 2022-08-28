@@ -60,10 +60,8 @@ class AdminController extends Controller
     public function sort(Request $request)
     {
         $orderIds = explode(',', $request->listIds);
-        // dd($orderIds);
         foreach($orderIds as $key=>$orderId){
             $prefecture=Prefecture::find($orderId);
-            // dd($prefecture);
             $prefecture->order_id=$key+1;
             $prefecture->save();
         }
