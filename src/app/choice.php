@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Choice extends Model
 {
+    public function choices()
+    {
+        return $this->hasMany(Prefecture::class);
+    }
+
     protected $guarded = array('id');
 
     public static $rules = array(
