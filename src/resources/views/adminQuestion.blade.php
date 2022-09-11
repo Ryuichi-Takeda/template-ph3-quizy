@@ -8,16 +8,48 @@
 </head>
 <body>
     <div>{{$prefecture[0]->prefecture}}</div>
-    <table>
-        {{-- {{dd($prefecture)}} --}}
-        <a href="{{ asset('admin/question/add/' . $prefecture_id) }}">追加</a>
-        @foreach($prefecture[0]->questions as $question)
-        <tr>
-            <td><a href="{{ asset('admin/choice/' . $prefecture_id . '/' . $question->id) }}"  width="400px" height="300px"><img src="{{ asset('img/' . $question->img) }}" alt=""  width="100%" height="100%"></a></td>
-            <td><a href="{{ asset('admin/question/edit/' . $prefecture_id . '/' . $question->id)}}">変更</a></td>
-            <td><a href="{{ asset('admin/question/delete/' . $prefecture_id . '/' . $question->id)}}">削除</a></td>
-        </tr>
-        @endforeach
-    </table>
+    <form action="{{ route('admin.sortQuestion') }}" method="post">
+        <table class="sortable">
+            <a href="{{ asset('admin/question/add/' . $prefecture_id) }}">追加</a>
+
+
+            @csrf
+            @foreach($prefecture[0]->questions as $question)
+            <tr id="{{ $question->id }}">
+                <td>
+                    <div>{{ $question->id }}</div>
+                </td>
+                <td>
+                    <div>{{ $question->order_id }}</div>
+                </td>
+                    <td width="300px" height="200px">
+                        <a href="{{ asset('admin/choice/' . $prefecture_id . '/' . $question->id) }}"  width="300px" height="200px">
+                            <img src="{{ asset('img/' . $question->img) }}" alt=""  width="100%" height="100%">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ asset('admin/question/edit/' . $prefecture_id . '/' . $question->id)}}">変更</a>
+                    </td>
+                    <td>
+                        <a href="{{ asset('admin/question/delete/' . $prefecture_id . '/' . $question->id)}}">削除</a>
+                    </td>
+            </tr>
+            @endforeach
+        </table>
+        <input type="hidden" id="list-ids" name="listIds" />
+        <button id="submit">更新</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $(".sortable tbody").sortable();
+            $("#submit").on('click', function() {
+                var listIds = $(".sortable tbody").sortable("toArray");
+                $("#list-ids").val(listIds);
+                $("form").submit();
+            });
+        });
+    </script>
 </body>
 </html>

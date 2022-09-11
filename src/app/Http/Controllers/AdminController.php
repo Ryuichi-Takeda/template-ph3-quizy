@@ -57,7 +57,7 @@ class AdminController extends Controller
     }
     public function showQuestion($prefecture_id)
     {
-        $prefecture = Prefecture::with('questions')->where('id',$prefecture_id)->get();
+        $prefecture = Prefecture::with('questions')->where('id',$prefecture_id)->orderBy('order_id','asc')->get();
         return view('adminQuestion',['prefecture'=>$prefecture,'prefecture_id'=>$prefecture_id]);
     }
 
@@ -94,13 +94,23 @@ class AdminController extends Controller
     {
         return view('adminChoice',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
     }
-    public function sort(Request $request)
+    public function sortPrefecture(Request $request)
     {
         $orderIds = explode(',', $request->listIds);
         foreach($orderIds as $key=>$orderId){
             $prefecture=Prefecture::find($orderId);
             $prefecture->order_id=$key+1;
             $prefecture->save();
+        }
+        return redirect('admin');
+    }
+    public function sortQuestion(Request $request)
+    {
+        $orderIds = explode(',', $request->listIds);
+        foreach($orderIds as $key=>$orderId){
+            $question=Question::find($orderId);
+            $question->order_id=$key+1;
+            $question->save();
         }
         return redirect('admin');
     }

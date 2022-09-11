@@ -30,4 +30,5 @@ Route::get('admin/question/delete/{prefecture_id}/{question_id}','AdminControlle
 Route::post('admin/question/delete/{prefecture_id}/{question_id}','AdminController@questionRemove')->name('admin.questionRemove');
 Route::get('admin/choice/{id}','AdminController@showQuestion')->name('admin.showQuestion');
 Route::get('admin/choice/{prefecture_id}/{question_id}','AdminController@showChoice')->name('admin.showChoice');
-Route::post('admin/sort', 'AdminController@sort')->name('admin.sort');
+Route::post('admin/sortPrefecture', 'AdminController@sortPrefecture')->name('admin.sortPrefecture');
+Route::post('admin/sortQuestion', 'AdminController@sortQuestion')->name('admin.sortQuestion');
