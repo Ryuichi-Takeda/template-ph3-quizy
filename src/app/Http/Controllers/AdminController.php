@@ -121,12 +121,15 @@ class AdminController extends Controller
     public function imageUpload(Request $request)
     {
         $file = $_FILES['img'];
-        $filename = $file['name'];
+        $filename = basename($file['name']);
         $tmp_path = $file['tmp_name'];
         $file_err = $file['error'];
         $filesize = $file['size'];
-
-        $caption = filter_input(INPUT_POST,'caption',FILTER_SANITIZE_SPECIAL_CHARS);
-        var_dump($file);
+        $path= public_path('img');
+        $upload_dir = $path . '/';
+        $save_filename = date('YmdHis') . $filename;
+        move_uploaded_file($tmp_path,$upload_dir.$save_filename);
+        // $caption = filter_input(INPUT_POST,'caption',FILTER_SANITIZE_SPECIAL_CHARS);
+        // var_dump($file);
     }
 }
