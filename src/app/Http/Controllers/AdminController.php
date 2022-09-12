@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function show()
     {
-        $prefectures = Prefecture::orderBy('order_id','asc')->get();
+        $prefectures = Prefecture::orderBy('order_id', 'asc')->get();
         return view('admin', ['prefectures' => $prefectures]);
     }
     public function add(Request $request)
@@ -31,8 +31,8 @@ class AdminController extends Controller
     {
         $id = $request->id;
         $form = Prefecture::find($request->id);
-        $prefecture = Prefecture::where('id',$request->id)->get();
-        return view('adminEdit', ['form'=>$form,'prefecture' => $prefecture]);
+        $prefecture = Prefecture::where('id', $request->id)->get();
+        return view('adminEdit', ['form' => $form, 'prefecture' => $prefecture]);
     }
     public function update(Request $request)
     {
@@ -57,13 +57,16 @@ class AdminController extends Controller
     }
     public function showQuestion($prefecture_id)
     {
-        $prefecture = Prefecture::with('questions')->where('id',$prefecture_id)->orderBy('order_id','asc')->get();
-        return view('adminQuestion',['prefecture'=>$prefecture,'prefecture_id'=>$prefecture_id]);
+        $prefecture = Prefecture::with('questions')
+            ->where('id', $prefecture_id)
+            ->orderBy('order_id', 'asc')
+            ->get();
+        return view('adminQuestion', ['prefecture' => $prefecture, 'prefecture_id' => $prefecture_id]);
     }
 
     public function questionAdd($prefecture_id)
     {
-        return view('adminQuestionAdd',['prefecture_id'=>$prefecture_id]);
+        return view('adminQuestionAdd', ['prefecture_id' => $prefecture_id]);
     }
     // public function questionCreate(Request $request)
     // {
@@ -74,32 +77,32 @@ class AdminController extends Controller
     //     $prefecture->fill($form)->save();
     //     return redirect('./admin');
     // }
-    public function questionEdit($prefecture_id,$question_id)
+    public function questionEdit($prefecture_id, $question_id)
     {
-        return view('adminQuestionEdit',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
+        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
 
-    public function questionDelete($prefecture_id,$question_id)
+    public function questionDelete($prefecture_id, $question_id)
     {
-        return view('adminQuestionDelete',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
+        return view('adminQuestionDelete', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
 
-    public function questionRemove($prefecture_id,$question_id)
+    public function questionRemove($prefecture_id, $question_id)
     {
-        Question::where('id',$question_id)->delete();
+        Question::where('id', $question_id)->delete();
         return redirect('./admin/question/' . $prefecture_id);
     }
 
-    public function showChoice($prefecture_id,$question_id)
+    public function showChoice($prefecture_id, $question_id)
     {
-        return view('adminChoice',['prefecture_id'=>$prefecture_id,'question_id'=>$question_id]);
+        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
     public function sortPrefecture(Request $request)
     {
         $orderIds = explode(',', $request->listIds);
-        foreach($orderIds as $key=>$orderId){
-            $prefecture=Prefecture::find($orderId);
-            $prefecture->order_id=$key+1;
+        foreach ($orderIds as $key => $orderId) {
+            $prefecture = Prefecture::find($orderId);
+            $prefecture->order_id = $key + 1;
             $prefecture->save();
         }
         return redirect('admin');
@@ -107,11 +110,23 @@ class AdminController extends Controller
     public function sortQuestion(Request $request)
     {
         $orderIds = explode(',', $request->listIds);
-        foreach($orderIds as $key=>$orderId){
-            $question=Question::find($orderId);
-            $question->order_id=$key+1;
+        foreach ($orderIds as $key => $orderId) {
+            $question = Question::find($orderId);
+            $question->order_id = $key + 1;
             $question->save();
         }
         return redirect('admin');
+    }
+
+    public function imageUpload(Request $request)
+    {
+        $file = $_FILES['img'];
+        $filename = $file['name'];
+        $tmp_path = $file['tmp_name'];
+        $file_err = $file['error'];
+        $filesize = $file['size'];
+
+        $caption = filter_input(INPUT_POST,'caption',FILTER_SANITIZE_SPECIAL_CHARS);
+        var_dump($file);
     }
 }

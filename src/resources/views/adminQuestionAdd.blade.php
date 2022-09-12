@@ -8,14 +8,14 @@
 </head>
 <body>
     <div>設問追加</div>
-    {{-- {{dd($prefecture_id)}} --}}
-    <form action="./add" method="post">
+    <form action="{{route('admin.questionAdd',$prefecture_id)}}" method="post" enctype="multipart/form-data">
         <table>
             @csrf
-            <tr>
+            <input type="file" name="img" accept="image/*">
+            {{-- <tr>
                 <th>タイトル</th>
                 <td><input type="text" name="prefecture"></td>
-            </tr>
+            </tr> --}}
             <tr>
                 <th>
                     <input type="submit" value="追加">

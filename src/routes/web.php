@@ -32,3 +32,4 @@ Route::get('admin/choice/{id}','AdminController@showQuestion')->name('admin.show
 Route::get('admin/choice/{prefecture_id}/{question_id}','AdminController@showChoice')->name('admin.showChoice');
 Route::post('admin/sortPrefecture', 'AdminController@sortPrefecture')->name('admin.sortPrefecture');
 Route::post('admin/sortQuestion', 'AdminController@sortQuestion')->name('admin.sortQuestion');
+Route::post('admin/question/add/{prefecture_id}', 'AdminController@imageUpload')->name('admin.questionAdd');
