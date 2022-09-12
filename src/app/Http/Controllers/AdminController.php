@@ -118,7 +118,7 @@ class AdminController extends Controller
         return redirect('admin');
     }
 
-    public function imageUpload(Request $request)
+    public function imageUpload(Request $request,$prefecture_id)
     {
         $file = $_FILES['img'];
         $filename = basename($file['name']);
@@ -129,7 +129,16 @@ class AdminController extends Controller
         $upload_dir = $path . '/';
         $save_filename = date('YmdHis') . $filename;
         move_uploaded_file($tmp_path,$upload_dir.$save_filename);
-        // $caption = filter_input(INPUT_POST,'caption',FILTER_SANITIZE_SPECIAL_CHARS);
-        // var_dump($file);
+
+        $item = new Question;
+        $item->order_id=5;
+        $item->img='a';
+        $item->prefecture_id=1;
+        $item->save();
+        Question::insert([
+            'order_id'=>5,
+            'img'=>$save_filename,
+            'prefecture_id'=>$prefecture_id
+        ]);
     }
 }

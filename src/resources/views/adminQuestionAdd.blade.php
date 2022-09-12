@@ -12,10 +12,6 @@
         <table>
             @csrf
             <input type="file" name="img" accept="image/*">
-            {{-- <tr>
-                <th>タイトル</th>
-                <td><input type="text" name="prefecture"></td>
-            </tr> --}}
             <tr>
                 <th>
                     <input type="submit" value="追加">
