@@ -81,7 +81,6 @@ class AdminController extends Controller
             ->where('id', $prefecture_id)
             ->orderBy('order_id', 'asc')
             ->get();
-
         return view('adminQuestionAdd', ['prefecture_id' => $prefecture_id, 'prefecture' => $prefecture]);
     }
 
@@ -111,7 +110,30 @@ class AdminController extends Controller
     }
     public function edit_question($prefecture_id, $question_id)
     {
-        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
+        $question = Question::find($question_id);
+        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id,'question'=>$question]);
+    }
+
+    public function update_question($prefecture_id, $question_id)
+    {
+        $prefecture = Prefecture::with('questions')
+            ->where('id', $prefecture_id)
+            ->orderBy('order_id', 'asc')
+            ->get();
+        $file = $_FILES['img'];
+        $filename = basename($file['name']);
+        $tmp_path = $file['tmp_name'];
+        $file_err = $file['error'];
+        $filesize = $file['size'];
+        $path = public_path('img');
+        $upload_dir = $path . '/';
+        $save_filename = date('YmdHis') . $filename;
+        move_uploaded_file($tmp_path, $upload_dir . $save_filename);
+        $question = Question::find($question_id);
+        Question::where('id', $question_id)->update([
+            'img' => $save_filename,
+        ]);
+        return view('adminQuestion', ['prefecture_id' => $prefecture_id,'prefecture'=>$prefecture]);
     }
 
     public function delete_question($prefecture_id, $question_id)

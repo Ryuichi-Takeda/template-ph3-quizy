@@ -26,6 +26,7 @@ Route::post('admin/delete/{prefecture_id}', 'AdminController@remove_prefecture')
 Route::get('admin/question/{prefecture_id}', 'AdminController@show_question')->name('admin.show.question');
 Route::get('admin/question/add/{prefecture_id}', 'AdminController@add_question')->name('admin.add.question');
 Route::get('admin/question/edit/{prefecture_id}/{question_id}', 'AdminController@edit_question')->name('admin.edit.question');
+Route::post('admin/question/edit/{prefecture_id}/{question_id}', 'AdminController@update_question')->name('admin.update.question');
 Route::get('admin/question/delete/{prefecture_id}/{question_id}', 'AdminController@delete_question')->name('admin.delete.question');
 Route::post('admin/question/delete/{prefecture_id}/{question_id}', 'AdminController@remove_question')->name('admin.remove.question');
 Route::get('admin/choice/{prefecture_id}/{question_id}', 'AdminController@show_choice')->name('admin.show.choice');
