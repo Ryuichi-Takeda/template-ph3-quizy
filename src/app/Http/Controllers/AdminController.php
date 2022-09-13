@@ -23,7 +23,6 @@ class AdminController extends Controller
     {
         $prefecture = $_POST['prefecture'];
 
-
         $max_order_id = Prefecture::max('order_id');
         Prefecture::insert([
             'order_id' => $max_order_id + 1,
@@ -32,15 +31,15 @@ class AdminController extends Controller
         $prefectures = Prefecture::orderBy('order_id', 'asc')->get();
         return view('admin', ['prefectures' => $prefectures]);
     }
-    public function edit_prefecture(Request $request,$prefecture_id)
+    public function edit_prefecture(Request $request, $prefecture_id)
     {
         $prefecture = Prefecture::where('id', $prefecture_id)->get();
         return view('adminEdit', ['prefecture' => $prefecture]);
     }
-    public function update_prefecture(Request $request,$prefecture_id)
+    public function update_prefecture(Request $request, $prefecture_id)
     {
         $title = $_POST['title'];
-        Prefecture::where('id',$prefecture_id)->update([
+        Prefecture::where('id', $prefecture_id)->update([
             'prefecture' => $title,
         ]);
         return redirect('admin');
@@ -48,13 +47,12 @@ class AdminController extends Controller
     public function delete_prefecture(Request $request)
     {
         $id = $request->id;
-        return redirect('admin.delete');
+        return view('adminDelete');
     }
-    public function remove_prefecture(Request $request)
+    public function remove_prefecture(Request $request,$prefecture_id)
     {
-        $id = $request->id;
-        Prefecture::find($request->id)->delete();
-        return redirect('./admin');
+        Prefecture::find($prefecture_id)->delete();
+        return redirect('admin');
     }
 
     public function sort_prefecture(Request $request)
@@ -133,5 +131,4 @@ class AdminController extends Controller
     {
         return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
-
 }
