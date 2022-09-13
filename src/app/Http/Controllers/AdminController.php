@@ -29,29 +29,20 @@ class AdminController extends Controller
             'order_id' => $max_order_id + 1,
             'prefecture' => $prefecture,
         ]);
-        // $this->validate($request, Prefecture::$rules);
-        // $prefecture = new Prefecture();
-        // $form = $request->all();
-        // unset($form['_token_']);
-        // $prefecture->fill($form)->save();
         $prefectures = Prefecture::orderBy('order_id', 'asc')->get();
         return view('admin', ['prefectures' => $prefectures]);
     }
-    public function edit_prefecture(Request $request)
+    public function edit_prefecture(Request $request,$prefecture_id)
     {
-        $id = $request->id;
-        $form = Prefecture::find($request->id);
-        $prefecture = Prefecture::where('id', $request->id)->get();
-        return view('adminEdit', ['form' => $form, 'prefecture' => $prefecture]);
+        $prefecture = Prefecture::where('id', $prefecture_id)->get();
+        return view('adminEdit', ['prefecture' => $prefecture]);
     }
-    public function update_prefecture(Request $request)
+    public function update_prefecture(Request $request,$prefecture_id)
     {
-        $id = $request->id;
-        $this->validate($request, Prefecture::$rules);
-        $prefecture = Prefecture::find($request->id);
-        $form = $request->all();
-        unset($form['_token_']);
-        $prefecture->fill($form)->save();
+        $title = $_POST['title'];
+        Prefecture::where('id',$prefecture_id)->update([
+            'prefecture' => $title,
+        ]);
         return redirect('admin');
     }
     public function delete_prefecture(Request $request)
