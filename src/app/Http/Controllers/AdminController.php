@@ -68,15 +68,27 @@ class AdminController extends Controller
     {
         return view('adminQuestionAdd', ['prefecture_id' => $prefecture_id]);
     }
-    // public function questionCreate(Request $request)
-    // {
-    //     $this->validate($request, Prefecture::$rules);
-    //     $prefecture = new Prefecture();
-    //     $form = $request->all();
-    //     unset($form['_token_']);
-    //     $prefecture->fill($form)->save();
-    //     return redirect('./admin');
-    // }
+
+    public function questionUpload(Request $request, $prefecture_id)
+    {
+        $file = $_FILES['img'];
+        $filename = basename($file['name']);
+        $tmp_path = $file['tmp_name'];
+        $file_err = $file['error'];
+        $filesize = $file['size'];
+        $path = public_path('img');
+        $upload_dir = $path . '/';
+        $save_filename = date('YmdHis') . $filename;
+        move_uploaded_file($tmp_path, $upload_dir . $save_filename);
+
+        $max_order_id = Question::max('order_id');
+        Question::insert([
+            'order_id' => $max_order_id + 1,
+            'img' => $save_filename,
+            'prefecture_id' => $prefecture_id,
+        ]);
+        return redirect('./admin/question/' . $prefecture_id);
+    }
     public function questionEdit($prefecture_id, $question_id)
     {
         return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
@@ -116,29 +128,5 @@ class AdminController extends Controller
             $question->save();
         }
         return redirect('admin');
-    }
-
-    public function imageUpload(Request $request,$prefecture_id)
-    {
-        $file = $_FILES['img'];
-        $filename = basename($file['name']);
-        $tmp_path = $file['tmp_name'];
-        $file_err = $file['error'];
-        $filesize = $file['size'];
-        $path= public_path('img');
-        $upload_dir = $path . '/';
-        $save_filename = date('YmdHis') . $filename;
-        move_uploaded_file($tmp_path,$upload_dir.$save_filename);
-
-        $item = new Question;
-        $item->order_id=5;
-        $item->img='a';
-        $item->prefecture_id=1;
-        $item->save();
-        Question::insert([
-            'order_id'=>5,
-            'img'=>$save_filename,
-            'prefecture_id'=>$prefecture_id
-        ]);
     }
 }
