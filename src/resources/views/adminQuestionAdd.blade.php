@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>設問追加</div>
-    <form action="{{route('admin.questionAdd',$prefecture_id)}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('admin.add.question',$prefecture_id)}}" method="post" enctype="multipart/form-data">
         <table>
             @csrf
             <input type="file" name="img" accept="image/*">

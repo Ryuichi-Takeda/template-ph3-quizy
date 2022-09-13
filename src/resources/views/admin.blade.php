@@ -35,16 +35,7 @@
     </form>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $(".sortable tbody").sortable();
-            $("#submit").on('click', function() {
-                var listIds = $(".sortable tbody").sortable("toArray");
-                $("#list-ids").val(listIds);
-                $("form").submit();
-            });
-        });
-    </script>
+    <script src="{{ asset('js/sort.js') }}"></script>
 </body>
 
 </html>
