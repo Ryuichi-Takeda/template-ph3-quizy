@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <a href="{{ route('admin.add') }}">追加</a>
-    <form action="{{ route('admin.sortPrefecture') }}" method="post">
+    <a href="{{ route('admin.add.prefecture') }}">追加</a>
+    <form action="{{ route('admin.sort.prefecture') }}" method="post">
         <table class="sortable">
 
 
@@ -24,10 +24,10 @@
                         <div>{{ $prefecture->order_id }}</div>
                     </td>
                     <td><a 
-                            href="{{ route('admin.showQuestion', ['id' => $prefecture->id]) }}">{{ $prefecture->prefecture }}</a>
+                            href="{{ route('admin.show.question', ['prefecture_id' => $prefecture->id]) }}">{{ $prefecture->prefecture }}</a>
                     </td>
-                    <td><a href="{{ route('admin.edit', ['id' => $prefecture->id]) }}">変更</a></td>
-                    <td><a href="{{ route('admin.delete', ['id' => $prefecture->id]) }}">削除</a></td>
+                    <td><a href="{{ route('admin.edit.prefecture', ['prefecture_id' => $prefecture->id]) }}">変更</a></td>
+                    <td><a href="{{ route('admin.delete.prefecture', ['prefecture_id' => $prefecture->id]) }}">削除</a></td>
                 </tr>
             @endforeach
         </table>

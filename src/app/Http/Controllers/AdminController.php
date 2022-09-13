@@ -9,32 +9,42 @@ use App\Question;
 
 class AdminController extends Controller
 {
-    public function show()
+    public function show_prefecture()
     {
         $prefectures = Prefecture::orderBy('order_id', 'asc')->get();
         return view('admin', ['prefectures' => $prefectures]);
     }
-    public function add(Request $request)
+    public function add_prefecture(Request $request)
     {
-        return view('adminAdd');
+        $prefectures = Prefecture::orderBy('order_id', 'asc')->get();
+        return view('adminAdd', ['prefectures' => $prefectures]);
     }
-    public function create(Request $request)
+    public function create_prefecture(Request $request)
     {
-        $this->validate($request, Prefecture::$rules);
-        $prefecture = new Prefecture();
-        $form = $request->all();
-        unset($form['_token_']);
-        $prefecture->fill($form)->save();
-        return redirect('./admin');
+        $prefecture = $_POST['prefecture'];
+
+
+        $max_order_id = Prefecture::max('order_id');
+        Prefecture::insert([
+            'order_id' => $max_order_id + 1,
+            'prefecture' => $prefecture,
+        ]);
+        // $this->validate($request, Prefecture::$rules);
+        // $prefecture = new Prefecture();
+        // $form = $request->all();
+        // unset($form['_token_']);
+        // $prefecture->fill($form)->save();
+        $prefectures = Prefecture::orderBy('order_id', 'asc')->get();
+        return view('admin', ['prefectures' => $prefectures]);
     }
-    public function edit(Request $request)
+    public function edit_prefecture(Request $request)
     {
         $id = $request->id;
         $form = Prefecture::find($request->id);
         $prefecture = Prefecture::where('id', $request->id)->get();
         return view('adminEdit', ['form' => $form, 'prefecture' => $prefecture]);
     }
-    public function update(Request $request)
+    public function update_prefecture(Request $request)
     {
         $id = $request->id;
         $this->validate($request, Prefecture::$rules);
@@ -42,20 +52,32 @@ class AdminController extends Controller
         $form = $request->all();
         unset($form['_token_']);
         $prefecture->fill($form)->save();
-        return redirect('./admin');
+        return redirect('admin');
     }
-    public function delete(Request $request)
+    public function delete_prefecture(Request $request)
     {
         $id = $request->id;
-        return view('adminDelete');
+        return redirect('admin.delete');
     }
-    public function remove(Request $request)
+    public function remove_prefecture(Request $request)
     {
         $id = $request->id;
         Prefecture::find($request->id)->delete();
         return redirect('./admin');
     }
-    public function showQuestion($prefecture_id)
+
+    public function sort_prefecture(Request $request)
+    {
+        $orderIds = explode(',', $request->listIds);
+        foreach ($orderIds as $key => $orderId) {
+            $prefecture = Prefecture::find($orderId);
+            $prefecture->order_id = $key + 1;
+            $prefecture->save();
+        }
+        return redirect('admin');
+    }
+
+    public function show_question($prefecture_id)
     {
         $prefecture = Prefecture::with('questions')
             ->where('id', $prefecture_id)
@@ -64,12 +86,12 @@ class AdminController extends Controller
         return view('adminQuestion', ['prefecture' => $prefecture, 'prefecture_id' => $prefecture_id]);
     }
 
-    public function questionAdd($prefecture_id)
+    public function sdd_question($prefecture_id)
     {
         return view('adminQuestionAdd', ['prefecture_id' => $prefecture_id]);
     }
 
-    public function questionUpload(Request $request, $prefecture_id)
+    public function upload_question(Request $request, $prefecture_id)
     {
         $file = $_FILES['img'];
         $filename = basename($file['name']);
@@ -89,37 +111,23 @@ class AdminController extends Controller
         ]);
         return redirect('./admin/question/' . $prefecture_id);
     }
-    public function questionEdit($prefecture_id, $question_id)
+    public function edit_question($prefecture_id, $question_id)
     {
         return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
 
-    public function questionDelete($prefecture_id, $question_id)
+    public function delete_question($prefecture_id, $question_id)
     {
         return view('adminQuestionDelete', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
     }
 
-    public function questionRemove($prefecture_id, $question_id)
+    public function remove_question($prefecture_id, $question_id)
     {
         Question::where('id', $question_id)->delete();
         return redirect('./admin/question/' . $prefecture_id);
     }
 
-    public function showChoice($prefecture_id, $question_id)
-    {
-        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
-    }
-    public function sortPrefecture(Request $request)
-    {
-        $orderIds = explode(',', $request->listIds);
-        foreach ($orderIds as $key => $orderId) {
-            $prefecture = Prefecture::find($orderId);
-            $prefecture->order_id = $key + 1;
-            $prefecture->save();
-        }
-        return redirect('admin');
-    }
-    public function sortQuestion(Request $request)
+    public function sort_question(Request $request)
     {
         $orderIds = explode(',', $request->listIds);
         foreach ($orderIds as $key => $orderId) {
@@ -129,4 +137,10 @@ class AdminController extends Controller
         }
         return redirect('admin');
     }
+
+    public function show_choice($prefecture_id, $question_id)
+    {
+        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
+    }
+
 }
