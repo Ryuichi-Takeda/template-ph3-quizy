@@ -17,7 +17,7 @@
                 <ul>
                     @foreach ($question->choices as $choice)
                         <li id="{{ 'answer_list_' . $loop->parent->index . '_' . $loop->index }}" class="answer_list {{'answer_list_' . $loop->parent->index}}"
-                            data-correct="{{$choice->valid}}">
+                            data-valid="{{$choice->valid}}">
                             {{ $choice->getData() }}</li>
                     @endforeach
                 </ul>
