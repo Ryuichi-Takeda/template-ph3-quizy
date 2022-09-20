@@ -163,4 +163,19 @@ class AdminController extends Controller
         $prefecture = Prefecture::where('id', $prefecture_id)->get();
         return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id, 'prefecture' => $prefecture]);
     }
+
+    public function update_choice(Request $request, $prefecture_id, $question_id)
+    {
+        $choices = Question::find($question_id)->choices;
+        foreach ($choices as $index => $choice) {
+            $choice->region = $request->{'choice' . $index};
+            if ($index === intval($request->valid)) {
+                $choice->valid = 1;
+            } else {
+                $choice->valid = 0;
+            }
+            $choice->save();
+        }
+        return redirect('./admin/choice/' . $prefecture_id . '/' . $question_id);
+    }
 }
