@@ -111,7 +111,7 @@ class AdminController extends Controller
     public function edit_question($prefecture_id, $question_id)
     {
         $question = Question::find($question_id);
-        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id,'question'=>$question]);
+        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id, 'question' => $question]);
     }
 
     public function update_question($prefecture_id, $question_id)
@@ -133,7 +133,7 @@ class AdminController extends Controller
         Question::where('id', $question_id)->update([
             'img' => $save_filename,
         ]);
-        return view('adminQuestion', ['prefecture_id' => $prefecture_id,'prefecture'=>$prefecture]);
+        return view('adminQuestion', ['prefecture_id' => $prefecture_id, 'prefecture' => $prefecture]);
     }
 
     public function delete_question($prefecture_id, $question_id)
@@ -160,6 +160,7 @@ class AdminController extends Controller
 
     public function show_choice($prefecture_id, $question_id)
     {
-        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
+        $prefecture = Prefecture::where('id', $prefecture_id)->get();
+        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id, 'prefecture' => $prefecture]);
     }
 }
