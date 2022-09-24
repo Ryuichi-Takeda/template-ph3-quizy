@@ -10,7 +10,7 @@
 
 <body>
     <div>問題追加</div>
-    <form action="{{route('admin.add')}}" method="post">
+    <form action="{{route('admin.add.prefecture')}}" method="post">
         <table>
             @csrf
             <tr>

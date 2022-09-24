@@ -13,12 +13,12 @@ class QuestionsTableSeeder extends Seeder
     public function run()
     {
         $questionsParam = [
-            ['prefecture_id' => 1,'img'=>'takanawa.png'],
-            ['prefecture_id' => 1,'img'=>'kameido.png'],
-            ['prefecture_id' => 1,'img'=>'kouzimati.png'],
-            ['prefecture_id' => 2,'img'=>'mukainada.png'],
-            ['prefecture_id' => 2,'img'=>'mitugi.png'],
-            ['prefecture_id' => 2,'img'=>'kanayama.png'],
+            ['order_id'=>1,'prefecture_id' => 1,'img'=>'takanawa.png'],
+            ['order_id'=>2,'prefecture_id' => 1,'img'=>'kameido.png'],
+            ['order_id'=>3,'prefecture_id' => 1,'img'=>'kouzimati.png'],
+            ['order_id'=>1,'prefecture_id' => 2,'img'=>'mukainada.png'],
+            ['order_id'=>2,'prefecture_id' => 2,'img'=>'mitugi.png'],
+            ['order_id'=>3,'prefecture_id' => 2,'img'=>'kanayama.png'],
         ];
         DB::table('questions')->insert($questionsParam);
     }
