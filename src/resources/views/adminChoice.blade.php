@@ -14,8 +14,7 @@
         <table>
             @csrf
             <a href=" {{ route('admin.show.question', ['prefecture_id' => $prefecture_id]) }}">設問に戻る</a><br>
-            {{-- <a href="{{ asset('admin/question/add/' . $prefecture_id) }}">追加</a> --}}
-            @foreach ($prefecture[0]->questions as $question)
+            @foreach ($prefecture->questions as $question)
                 @foreach ($question->choices->where('question_id', $question_id) as $choice)
                     <tr>
                         <td><input type="text" name="choice{{ $loop->index }}" value="{{ $choice->region }}"></td>

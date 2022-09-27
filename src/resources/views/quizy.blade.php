@@ -9,7 +9,7 @@
 
 <body>
     <div class="main">
-        <h1>{{ $prefecture[0]->prefecture }}の難読地名クイズ</h1>
+        <h1>{{ $prefecture->prefecture }}の難読地名クイズ</h1>
         @foreach ($questions as $question)
             <div class="quiz">
                 <h2>{{ $loop->index + 1 }}.この地名は何て読む？</h2>
