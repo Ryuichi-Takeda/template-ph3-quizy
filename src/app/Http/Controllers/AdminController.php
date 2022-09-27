@@ -174,9 +174,9 @@ class AdminController extends Controller
         foreach ($choices as $index => $choice) {
             $choice->region = $request->{'choice' . $index};
             if ($index === intval($request->valid)) {
-                $choice->valid = 1;
+                $choice->valid = true;
             } else {
-                $choice->valid = 0;
+                $choice->valid = false;
             }
             $choice->save();
         }
