@@ -33,7 +33,7 @@ class AdminController extends Controller
     }
     public function edit_prefecture(Request $request, $prefecture_id)
     {
-        $prefecture = Prefecture::where('id', $prefecture_id)->get();
+        $prefecture = Prefecture::where('id', $prefecture_id)->first();
         return view('adminEdit', ['prefecture' => $prefecture]);
     }
     public function update_prefecture(Request $request, $prefecture_id)
@@ -71,7 +71,7 @@ class AdminController extends Controller
         $prefecture = Prefecture::with('questions')
             ->where('id', $prefecture_id)
             ->orderBy('order_id', 'asc')
-            ->get();
+            ->first();
         return view('adminQuestion', ['prefecture' => $prefecture, 'prefecture_id' => $prefecture_id]);
     }
 
@@ -80,7 +80,7 @@ class AdminController extends Controller
         $prefecture = Prefecture::with('questions')
             ->where('id', $prefecture_id)
             ->orderBy('order_id', 'asc')
-            ->get();
+            ->first();
         return view('adminQuestionAdd', ['prefecture_id' => $prefecture_id, 'prefecture' => $prefecture]);
     }
 
@@ -89,7 +89,7 @@ class AdminController extends Controller
         $prefecture = Prefecture::with('questions')
             ->where('id', $prefecture_id)
             ->orderBy('order_id', 'asc')
-            ->get();
+            ->first();
         $file = $_FILES['img'];
         $filename = basename($file['name']);
         $tmp_path = $file['tmp_name'];
@@ -111,7 +111,7 @@ class AdminController extends Controller
     public function edit_question($prefecture_id, $question_id)
     {
         $question = Question::find($question_id);
-        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id,'question'=>$question]);
+        return view('adminQuestionEdit', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id, 'question' => $question]);
     }
 
     public function update_question($prefecture_id, $question_id)
@@ -119,7 +119,7 @@ class AdminController extends Controller
         $prefecture = Prefecture::with('questions')
             ->where('id', $prefecture_id)
             ->orderBy('order_id', 'asc')
-            ->get();
+            ->first();
         $file = $_FILES['img'];
         $filename = basename($file['name']);
         $tmp_path = $file['tmp_name'];
@@ -133,7 +133,7 @@ class AdminController extends Controller
         Question::where('id', $question_id)->update([
             'img' => $save_filename,
         ]);
-        return view('adminQuestion', ['prefecture_id' => $prefecture_id,'prefecture'=>$prefecture]);
+        return view('adminQuestion', ['prefecture_id' => $prefecture_id, 'prefecture' => $prefecture]);
     }
 
     public function delete_question($prefecture_id, $question_id)
@@ -143,8 +143,12 @@ class AdminController extends Controller
 
     public function remove_question($prefecture_id, $question_id)
     {
+        $prefecture = Prefecture::with('questions')
+            ->where('id', $prefecture_id)
+            ->orderBy('order_id', 'asc')
+            ->first();
         Question::where('id', $question_id)->delete();
-        return redirect('./admin/question/' . $prefecture_id);
+        return view('adminQuestion',['prefecture_id' => $prefecture_id, 'question_id' => $question_id,'prefecture'=>$prefecture]);
     }
 
     public function sort_question(Request $request)
@@ -160,6 +164,22 @@ class AdminController extends Controller
 
     public function show_choice($prefecture_id, $question_id)
     {
-        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id]);
+        $prefecture = Prefecture::where('id', $prefecture_id)->first();
+        return view('adminChoice', ['prefecture_id' => $prefecture_id, 'question_id' => $question_id, 'prefecture' => $prefecture]);
+    }
+
+    public function update_choice(Request $request, $prefecture_id, $question_id)
+    {
+        $choices = Question::find($question_id)->choices;
+        foreach ($choices as $index => $choice) {
+            $choice->region = $request->{'choice' . $index};
+            if ($index === intval($request->valid)) {
+                $choice->valid = true;
+            } else {
+                $choice->valid = false;
+            }
+            $choice->save();
+        }
+        return redirect('./admin/choice/' . $prefecture_id . '/' . $question_id);
     }
 }

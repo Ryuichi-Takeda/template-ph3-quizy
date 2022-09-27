@@ -11,7 +11,7 @@ class QuizyController extends Controller
 {
     public function quiz_list($prefecture_id)
     {
-        $prefecture = Prefecture::where('id',$prefecture_id)->get();
+        $prefecture = Prefecture::where('id',$prefecture_id)->first();
 
         $questions = Question::with('choices')->where('prefecture_id',$prefecture_id)->get();
 

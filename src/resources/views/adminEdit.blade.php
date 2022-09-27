@@ -15,7 +15,7 @@
             @csrf
             <tr>
                 <th>タイトル</th>
-                <td><input type="text" name="title" value="{{ $prefecture[0]->prefecture }}"></td>
+                <td><input type="text" name="title" value="{{ $prefecture->prefecture }}"></td>
             </tr>
             <tr>
                 <th>

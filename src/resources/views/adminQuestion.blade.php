@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <div>{{ $prefecture[0]->prefecture }}</div>
+    <div>{{ $prefecture->prefecture }}</div>
     <form action="{{ route('admin.sort.question') }}" method="post">
         <table class="sortable">
             <a href="{{ route('admin.add.question', ['prefecture_id' => $prefecture_id]) }}">追加</a>
             @csrf
-            @foreach ($prefecture[0]->questions as $question)
+            @foreach ($prefecture->questions as $question)
                 <tr id="{{ $question->id }}">
                     <td>
                         <div>{{ $question->id }}</div>
